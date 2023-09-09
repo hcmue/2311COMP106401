@@ -1,0 +1,14 @@
+﻿<h2>Máy tính cá nhân</h2>
+
+<form asp-action="Calculate" asp-controller="Calculator">
+    <input name="a" value="@ViewBag.A" />
+    <select name="op">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="/">/</option>
+        <option value="*">*</option>
+    </select>
+    <input name="b" value="@ViewBag.B" />
+    <button>=</button>
+    <span class="text-danger">@ViewBag.KetQua</span>
+</form>
