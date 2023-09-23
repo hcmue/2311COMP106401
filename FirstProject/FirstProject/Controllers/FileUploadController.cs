@@ -40,7 +40,7 @@ namespace FirstProject.Controllers
         {
             foreach(var MyFile in MyFiles)
             {
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Data", MyFile.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Data", DateTime.Now.Ticks.ToString() + "_" + MyFile.FileName);
                 using (var file = new FileStream(filePath, FileMode.CreateNew))
                 {
                     MyFile.CopyTo(file);
