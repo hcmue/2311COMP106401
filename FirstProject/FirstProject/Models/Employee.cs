@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Net;
 
 namespace FirstProject.Models
@@ -7,11 +8,12 @@ namespace FirstProject.Models
     {
         public Guid? Id { get; set; }
 
-        [Required(ErrorMessage ="Phải nhập mã nhân viên")]
-        [RegularExpression(@"NV\d{5}", ErrorMessage ="Mã NV dạng NVxxxxx")]
+        [Required(ErrorMessage = "Phải nhập mã nhân viên")]
+        [RegularExpression(@"NV\d{5}", ErrorMessage = "Mã NV dạng NVxxxxx")]
+        [Remote(action: "CheckExistEmployeeNo", controller: "Employee")]
         public string EmployeeNo { get; set; }
 
-        [StringLength(150, MinimumLength = 5, ErrorMessage ="Từ 5 đến 150 kí tự")]
+        [StringLength(150, MinimumLength = 5, ErrorMessage = "Từ 5 đến 150 kí tự")]
         public string FullName { get; set; }
 
         [RegularExpression(@"[a-z]+(.[a-z]+)*@hcmue.edu.vn")]
@@ -32,7 +34,7 @@ namespace FirstProject.Models
         public string CreditCard { get; set; }
 
         [DataType(DataType.MultilineText)]
-        [MaxLength(250, ErrorMessage ="Tối đa 250 kí tự")]
+        [MaxLength(250, ErrorMessage = "Tối đa 250 kí tự")]
         public string Description { get; set; }
     }
 }
