@@ -1,0 +1,11 @@
+﻿@model Employee
+<h2>NHẬP THÔNG TIN</h2>
+<form asp-action="Create">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label asp-for="BirthDate"></label>
+        <input asp-for="BirthDate" />
+        <span asp-validation-for="BirthDate"></span>
+    </div>
+    <button class="btn btn-success">Đăng ký</button>
+</form>
