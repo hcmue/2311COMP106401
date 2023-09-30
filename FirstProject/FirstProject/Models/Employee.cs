@@ -32,6 +32,7 @@ namespace FirstProject.Models
         public string CreditCard { get; set; }
 
         [DataType(DataType.MultilineText)]
+        [MaxLength(250, ErrorMessage ="Tối đa 250 kí tự")]
         public string Description { get; set; }
     }
 }
