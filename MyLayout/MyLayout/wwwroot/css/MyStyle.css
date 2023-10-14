@@ -1,0 +1,6 @@
+﻿#main{border:1px solid blue;
+}
+#myheader{
+    height: 100px; background-color:aquamarine;
+}
+.mycontent{padding:5px; min-height:400px;}

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/MyStyle.css" rel="stylesheet" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <div class="container" id="main">
+        <header id="myheader">#HEADER</header>
+        <div class="row m-0">
+            <aside class="col-3 mycontent bg-light">
+                #MENU LEFT
+
+                @await Html.PartialAsync("_DanhMuc")
+                @{
+                    var dsLoai = new List<Loai>
+                    {
+                        new Loai{MaLoai=1, TenLoai="Bia"},
+                        new Loai{MaLoai=2, TenLoai="Xe hơi"},
+                    };
+                }
+                @await Html.PartialAsync("_Category", dsLoai)
+
+            </aside>
+            <div class="col-9 mycontent">
+                @RenderBody()
+            </div>
+        </div>
+        <footer>Bản quyền</footer>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
