@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MyLayout.Data.Loai>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.TenLoai</td>
+            <td>@item.MoTa</td>
+            <td>@item.Hinh</td>
+        </tr>
+    }
+</table>
+
