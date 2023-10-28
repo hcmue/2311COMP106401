@@ -51,7 +51,9 @@ namespace MyStoreLab.Controllers
                 DonGia = hh.DonGia ?? 0,
                 Hinh = hh.Hinh ?? string.Empty,
                 Loai = hh.MaLoaiNavigation.TenLoai
-            }).ToList();
+            })
+                .OrderBy(p => p.DonGia)
+                .ToList();
             return View("Index", result);
         }
     }
