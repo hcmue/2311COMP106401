@@ -46,5 +46,37 @@ namespace MyStoreLab.Controllers
             return PartialView("HangHoaView", data);
         }
         #endregion
+
+        public IActionResult JsonSearch(string? keyword, double? priceFrom, double? priceTo)
+        {
+            var data = _ctx.HangHoas.AsQueryable();
+            if (keyword != null)
+            {
+                data = data.Where(h => h.TenHh.Contains(keyword));
+            }
+            if (priceFrom != null)
+            {
+                data = data.Where(p => p.DonGia >= priceFrom);
+            }
+            if (priceTo != null)
+            {
+                data = data.Where(p => p.DonGia <= priceTo);
+            }
+            var result = data.Select(hh => new HangHoaVM
+            {
+                MaHh = hh.MaHh,
+                TenHh = hh.TenHh,
+                DonGia = hh.DonGia ?? 0,
+                Hinh = hh.Hinh ?? string.Empty,
+                Loai = hh.MaLoaiNavigation.TenLoai
+            }).ToList();
+            return Json(result);
+        }
+
+
+        public IActionResult TimKiem()
+        {
+            return View();
+        }
     }
 }

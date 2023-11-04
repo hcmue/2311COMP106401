@@ -1,0 +1,46 @@
+﻿@{
+	ViewData["Title"] = "TimKiem";
+}
+
+<h1>Tìm kiếm</h1>
+
+<div>
+	Tên: <input id="tenhh" />
+	<button type="button" id="btnTim">Tìm</button>
+	<br />
+	Giá từ: <input type="number" min="0" id="giaTu" />
+	Giá đến: <input type="number" min="0" id="giaDen" />
+</div>
+<div id="ketqua">
+	<table class="table table-hover">
+		<tbody id="bang"></tbody>
+	</table>
+</div>
+@section Scripts{
+	<script>
+		$(document).ready(function () {
+			$("#btnTim").click(function () {
+				$.ajax({
+					url: "/Ajax/JsonSearch",
+					data: {
+						keyword: $("#tenhh").val(),
+						priceFrom: $("#giaTu").val(),
+						priceTo: $("#giaDen").val()
+					},
+					success: function(response){
+						console.log(response);
+						$("#bang").html('');
+
+						$(response).each(function(idx, item){
+							let tr = $("<tr/>");
+							$("<td/>").html(item.tenHh).appendTo(tr);
+							$("<td/>").html(item.donGia).appendTo(tr);
+							
+							$("#bang").append(tr);
+						});
+					}
+				});
+			});
+		});
+	</script>
+}
