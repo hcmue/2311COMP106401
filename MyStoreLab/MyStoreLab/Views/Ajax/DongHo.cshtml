@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "DongHo";
+}
+
+<h1>Đồng hồ</h1>
+
+<h2 id="clock" class="text-danger"></h2>
+@section Scripts{
+    <script>
+        function layGioServer(){
+            $.ajax({
+                url: "/Ajax/ServerTime",
+                success: function(response){
+                    $("#clock").html(response);
+                }
+            });
+        }
+
+        $(document).ready(function(){
+            //gọi lần đầu
+            layGioServer();
+            setInterval(layGioServer, 1000);
+        });
+    </script>
+}
