@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyStoreLab.Data;
 using MyStoreLab.Models;
 
@@ -27,6 +28,7 @@ namespace MyStoreLab.Controllers
             return View(data);
         }
 
+        [Authorize]
         public IActionResult Search(string? keyword, double? priceFrom, double? priceTo)
         {
             var data = _ctx.HangHoas.AsQueryable();
